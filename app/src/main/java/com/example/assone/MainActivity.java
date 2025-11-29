@@ -34,6 +34,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Register ActivityResultLaunchers early in onCreate
+        addTripLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> handleTripResult(result, false)
+        );
+
+        editTripLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> handleTripResult(result, true)
+        );
+
         recyclerView = findViewById(R.id.recyclerTrips);
         fabAdd = findViewById(R.id.fabAddTrip);
 
@@ -58,7 +69,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(Trip trip) {
-                // Open TodoActivity
+                Intent intent = new Intent(MainActivity.this, TodoActivity.class);
+                intent.putExtra("trip", trip);
+                startActivity(intent);
             }
         });
 
@@ -69,17 +82,6 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, AddTripActivity.class);
             addTripLauncher.launch(intent);
         });
-
-        // Register ActivityResultLaunchers
-        addTripLauncher = registerForActivityResult(
-                new ActivityResultContracts.StartActivityForResult(),
-                result -> handleTripResult(result, false)
-        );
-
-        editTripLauncher = registerForActivityResult(
-                new ActivityResultContracts.StartActivityForResult(),
-                result -> handleTripResult(result, true)
-        );
     }
 
     private void handleTripResult(ActivityResult result, boolean isEdit) {

@@ -29,7 +29,6 @@ public class AddTripActivity extends AppCompatActivity {
         edtDate = findViewById(R.id.edtTripDate);
         btnSave = findViewById(R.id.btnSaveTrip);
 
-        // CHECK IF EDIT
         Intent intent = getIntent();
         isEdit = intent.getBooleanExtra("isEdit", false);
 

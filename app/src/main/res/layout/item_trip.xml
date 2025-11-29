@@ -55,8 +55,14 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:src="@android:drawable/ic_menu_edit"
-                    android:background="?selectableItemBackgroundBorderless"
- />
+                    android:background="?selectableItemBackgroundBorderless"/>
+
+                <ImageButton
+                    android:id="@+id/btnDeleteTrip"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@android:drawable/ic_menu_delete"
+                    android:background="?selectableItemBackgroundBorderless" />
 
             </LinearLayout>
 
